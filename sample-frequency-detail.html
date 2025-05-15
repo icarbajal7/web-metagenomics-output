@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>q2_feature_table : summarize</title>
+    <link rel="stylesheet" href="./q2templateassets/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="./q2templateassets/css/normalize.css"/>
+    <link rel="stylesheet" href="./q2templateassets/css/base-template.css"/>
+    <script src="./q2templateassets/js/jquery-3.2.0.min.js" charset="utf-8"></script>
+    <script src="./q2templateassets/js/bootstrap.min.js" charset="utf-8"></script>
+    
+<script src="js/vega.min.js"></script>
+<script src="js/vega-embed.min.js"></script>
+<script src="util.js"></script>
+<link rel="stylesheet" type="text/css" href="css/spinkit.css" /> 
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div id="q2templatesheader" class="row">
+        <div class="col-lg-12">
+          <a href="http://qiime2.org/">
+            <img src="./q2templateassets/img/qiime2-rect-200.png"
+            alt="QIIME 2">
+          </a>
+        </div>
+      </div>
+        
+
+  <div class="row">
+    <div class="col-lg-12">
+      <ul class="nav nav-tabs">
+        
+          <li class="">
+            <a href="index.html">
+              Overview
+            </a>
+          </li>
+        
+          <li class="active">
+            <a href="sample-frequency-detail.html">
+              Interactive Sample Detail
+            </a>
+          </li>
+        
+          <li class="">
+            <a href="feature-frequency-detail.html">
+              Feature Detail
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      
+
+
+<div class="row">
+
+  <div class="col-lg-8">
+    <div id="plot">
+      <div id="loading" class="spinner">
+        <div class="rect1"></div>
+        <div class="rect2"></div>
+        <div class="rect3"></div>
+        <div class="rect4"></div>
+        <div class="rect5"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-4">
+    <div class="row">
+      <div class="col-lg-12">
+        <h3>Plot Controls</h3>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12" id="toolbar"></div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12" id="metadata-category"></div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12" id="sampling-depth-slider"></div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12" id="text-field"></div>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+
+
+<script type="text/javascript">
+  function handleErrors(errors, element, msg) {
+    console.error(errors);
+    msg = msg === undefined ? '' : msg + '<br><br>';
+    var helpMsg = '<p class="alert alert-danger"> \
+                   There was an error loading and rendering the \
+                   visualization.<br><br>' + msg + 'Please \
+                   copy-and-paste the following error messages when \
+                   reporting this error (please be aware that the content \
+                   of your analysis data and/or metadata is included in \
+                   these messages):</p>';
+    var helpMsgDiv = $('<div></div>');
+    helpMsgDiv.append(helpMsg);
+    helpMsgDiv.append('<pre><code>' + errors.join('\n\n') + '</code></pre>');
+    element.replaceWith(helpMsgDiv);
+  }
+  window.onerror = function(error) {
+    handleErrors([error], $('#loading'));
+  };
+</script>
+<script id="spec" type="application/json">
+{"$schema": "https://vega.github.io/schema/vega/v5.json", "autosize": {"contains": "content", "type": "fit-x", "resize": true}, "width": 800, "data": [{"transform": [{"as": "selectedCategory", "expr": "datum.metadata[category]", "type": "formula"}], "name": "table", "values": [{"id": "MG2SU1SS01", "metadata": {"ID muestra de suelo": "SU-12935", "ID Biblioteca": "MG2SU1SS01", "Fecha Muestreo": "44240", "M\u00e9todo": "Aleatorio", "Tipo": "Forestal", "Estado": "Hidalgo", "Municipio": "-", "Localidad": "La Pechuga", "X": "20.684.814", "Y": "-99248189", "Profundidad": "10 a 30 Cm", "R\u00e9gimen": "-", "Cultivo Anterior": "N.A", "Cultivo a Establecer": "N.A", "Arena %": 56.64, "Arcilla %": 24.36, "Limo %": 19.0, "Tipo de Suelo": "Franco Arcillo Arenoso", "Textura": "Medio", "pH": 7.71, "CE(1:2) ds/m": 0.24, "Nitr\u00f3geno Total (%)": "374.213.826", "Materia Org\u00e1nica         (%)": "6.897.867.319", "D.A (g/Cm3)": 952.0, "Carbono Total": "4.001.083.132", "Relaci\u00f3n C/N": "1.069.197.035", "K(PPM)": 186.17, "CA(PPM)": 5872.76, "MG(PPM)": 200.49, "NA(PPM)": 11.78, "FE(ppm)": 17.28, "ZN(ppm)": 9.29, "MN(ppm)": 23.51, "CU(ppm)": 1.88, "ARENA(%)": 55.64, "ARCILLA(%)": 24.36, "CE": 0.24, "DA": 0.95, "LIMO(%)": 20.0, "SATURACION": 60.0, "PH": 7.71, "CARBONATOS(%)": 25.93, "MO": 6.9, "N INORGANICO": 30.16, "C.E CAPT": 0.9, "Ca+Mg": 7.61, "CA": 6.0, "MG": 1.61, "NA": 0.98, "K": 0.43, "CO3": 0.12, "HCO3": 0.26, "CL": 1.84, "SULFATOS": 6.8}, "frequency": 6838.0}, {"id": "MG2SU1SS02", "metadata": {"ID muestra de suelo": "SU-12948", "ID Biblioteca": "MG2SU1SS02", "Fecha Muestreo": "44238", "M\u00e9todo": "Aleatorio", "Tipo": "Agr\u00edcola", "Estado": "Hidalgo", "Municipio": "-", "Localidad": "Zothe", "X": "20.223.571", "Y": "-99.425.579", "Profundidad": "30 cm", "R\u00e9gimen": "-", "Cultivo Anterior": "Ma\u00edz", "Cultivo a Establecer": "Ma\u00edz", "Arena %": 35.64, "Arcilla %": 34.36, "Limo %": 30.0, "Tipo de Suelo": "Franco Arcilloso", "Textura": "Medio", "pH": 6.66, "CE(1:2) ds/m": 145.0, "Nitr\u00f3geno Total (%)": "112.027.582", "Materia Org\u00e1nica         (%)": "1.364.606.809", "D.A (g/Cm3)": 953.0, "Carbono Total": "791.535.272", "Relaci\u00f3n C/N": "7.065.539.184", "K(PPM)": 409.59, "CA(PPM)": 2087.88, "MG(PPM)": 558.93, "NA(PPM)": 149.8, "FE(ppm)": 25.27, "ZN(ppm)": 1.44, "MN(ppm)": 44.4, "CU(ppm)": 0.95, "ARENA(%)": 35.64, "ARCILLA(%)": 34.36, "CE": 0.14, "DA": 0.95, "LIMO(%)": 30.0, "SATURACION": 42.0, "PH": 6.66, "CARBONATOS(%)": 0.82, "MO": 1.36, "N INORGANICO": 44.89, "C.E CAPT": 0.61, "Ca+Mg": 2.95, "CA": 1.67, "MG": 1.29, "NA": 2.64, "K": 0.46, "CO3": 0.12, "HCO3": 0.24, "CL": 1.83, "SULFATOS": 3.86}, "frequency": 92011.0}, {"id": "MG2SU1SS03", "metadata": {"ID muestra de suelo": "SU-12990", "ID Biblioteca": "MG2SU1SS03", "Fecha Muestreo": "44241", "M\u00e9todo": "5 de oro", "Tipo": "Agr\u00edcola", "Estado": "Hidalgo, Apan", "Municipio": "-", "Localidad": "Santa Cruz", "X": "194.937", "Y": "-982332", "Profundidad": "30 cm", "R\u00e9gimen": "-", "Cultivo Anterior": "Ma\u00edz/Avena", "Cultivo a Establecer": "Ma\u00edz", "Arena %": 17.48, "Arcilla %": 57.8, "Limo %": 24.72, "Tipo de Suelo": "Arcilla", "Textura": "Fino", "pH": 6.69, "CE(1:2) ds/m": 0.14, "Nitr\u00f3geno Total (%)": "200.577.222", "Materia Org\u00e1nica         (%)": "3.312.698.886", "D.A (g/Cm3)": 9.325, "Carbono Total": "1.921.519.075", "Relaci\u00f3n C/N": "9.579.946.593", "K(PPM)": 400.05, "CA(PPM)": 2454.9, "MG(PPM)": 870.71, "NA(PPM)": 105.82, "FE(ppm)": 121.29, "ZN(ppm)": 4.45, "MN(ppm)": 39.24, "CU(ppm)": 2.0, "ARENA(%)": 17.48, "ARCILLA(%)": 57.8, "CE": 0.14, "DA": 0.93, "LIMO(%)": 24.72, "SATURACION": 49.0, "PH": 6.69, "CARBONATOS(%)": 0.74, "MO": 3.31, "N INORGANICO": 35.77, "C.E CAPT": 0.41, "Ca+Mg": 1.72, "CA": 0.96, "MG": 0.76, "NA": 1.6, "K": 0.76, "CO3": 0.12, "HCO3": 0.16, "CL": 1.68, "SULFATOS": 2.13}, "frequency": 18741.0}, {"id": "MG2SU1SS04", "metadata": {"ID muestra de suelo": "SU-13199", "ID Biblioteca": "MG2SU1SS04", "Fecha Muestreo": "44238", "M\u00e9todo": "5 de oro", "Tipo": "Agr\u00edcola", "Estado": "Hidalgo", "Municipio": "-", "Localidad": "San Pedro Tlaquilpan", "X": "195.842", "Y": "-984.212", "Profundidad": "30 cm", "R\u00e9gimen": "-", "Cultivo Anterior": "Ma\u00edz", "Cultivo a Establecer": "Ma\u00edz", "Arena %": 41.48, "Arcilla %": 27.8, "Limo %": 30.72, "Tipo de Suelo": "Franco", "Textura": "Medio", "pH": 6.78, "CE(1:2) ds/m": 0.11, "Nitr\u00f3geno Total (%)": "100.789.936", "Materia Org\u00e1nica         (%)": "1.117.378.592", "D.A (g/Cm3)": 0.93, "Carbono Total": "648.131.434", "Relaci\u00f3n C/N": "6.430.517.368", "K(PPM)": 333.84, "CA(PPM)": 5461.34, "MG(PPM)": 1538.42, "NA(PPM)": 86.56, "FE(ppm)": 59.0, "ZN(ppm)": 7.78, "MN(ppm)": 101.17, "CU(ppm)": 2.73, "ARENA(%)": 22.04, "ARCILLA(%)": 47.24, "CE": 0.39, "DA": 0.86, "LIMO(%)": 30.72, "SATURACION": 63.0, "PH": 6.77, "CARBONATOS(%)": 2.49, "MO": 9.9, "N INORGANICO": 46.99, "C.E CAPT": 1.06, "Ca+Mg": 7.75, "CA": 4.44, "MG": 3.32, "NA": 1.6, "K": 1.22, "CO3": 0.24, "HCO3": 0.12, "CL": 4.05, "SULFATOS": 6.16}, "frequency": 1.0}, {"id": "MG2SU1SS05", "metadata": {"ID muestra de suelo": "SU-13237", "ID Biblioteca": "MG2SU1SS05", "Fecha Muestreo": "44258", "M\u00e9todo": "Al azar", "Tipo": "Agr\u00edcola", "Estado": "Guanajuato", "Municipio": "-", "Localidad": "Los Martinez", "X": "20\u00b018\u00b416.7\"", "Y": "101\u00b023\u00b400.2\"", "Profundidad": "30", "R\u00e9gimen": "-", "Cultivo Anterior": "Sorgo", "Cultivo a Establecer": "Maiz", "Arena %": 20.04, "Arcilla %": 57.24, "Limo %": 22.72, "Tipo de Suelo": "Arcilla", "Textura": "Fino", "pH": 5.34, "CE(1:2) ds/m": 865.0, "Nitr\u00f3geno Total (%)": "154.088.046", "Materia Org\u00e1nica         (%)": "2.744.485.714", "D.A (g/Cm3)": 1.023, "Carbono Total": "1.591.929.069", "Relaci\u00f3n C/N": "1.033.129.506", "K(PPM)": 279.64, "CA(PPM)": 1017.38, "MG(PPM)": 240.28, "NA(PPM)": 27.39, "FE(ppm)": 112.96, "ZN(ppm)": 4.05, "MN(ppm)": 13.61, "CU(ppm)": 1.06, "ARENA(%)": 72.2, "ARCILLA(%)": 13.24, "CE": 0.15, "DA": 0.82, "LIMO(%)": 14.56, "SATURACION": 40.0, "PH": 5.89, "CARBONATOS(%)": 0.08, "MO": 2.08, "N INORGANICO": 30.86, "C.E CAPT": 0.62, "Ca+Mg": 4.69, "CA": 3.5, "MG": 1.2, "NA": 0.92, "K": 0.56, "CO3": 0.12, "HCO3": 0.22, "CL": 1.78, "SULFATOS": 4.05}, "frequency": 7584.0}, {"id": "MG2SU1SS06", "metadata": {"ID muestra de suelo": "SU-13249", "ID Biblioteca": "MG2SU1SS06", "Fecha Muestreo": "-", "M\u00e9todo": "-", "Tipo": "Forestal", "Estado": "Morelos", "Municipio": "-", "Localidad": "Emiliano Zapata", "X": "-", "Y": "-", "Profundidad": "0-15", "R\u00e9gimen": "Temporal", "Cultivo Anterior": "-", "Cultivo a Establecer": "Selva baja caducifolia", "Arena %": 22.04, "Arcilla %": 47.24, "Limo %": 30.72, "Tipo de Suelo": "Arcilla", "Textura": "Fino", "pH": 6.77, "CE(1:2) ds/m": 0.39, "Nitr\u00f3geno Total (%)": "546.540.854", "Materia Org\u00e1nica         (%)": "9.895.264.967", "D.A (g/Cm3)": 862.0, "Carbono Total": "5.739.712.858", "Relaci\u00f3n C/N": "105.018.917", "K(PPM)": 64.04, "CA(PPM)": 1362.35, "MG(PPM)": 373.13, "NA(PPM)": 41.08, "FE(ppm)": 153.68, "ZN(ppm)": 1.39, "MN(ppm)": 99.69, "CU(ppm)": 1.25, "ARENA(%)": 36.2, "ARCILLA(%)": 40.52, "CE": 0.17, "DA": 1.0, "LIMO(%)": 23.28, "SATURACION": 40.0, "PH": 4.85, "CARBONATOS(%)": 0.04, "MO": 2.81, "N INORGANICO": 38.58, "C.E CAPT": 0.52, "Ca+Mg": 4.24, "CA": 3.19, "MG": 1.05, "NA": 0.7, "K": 0.24, "CO3": 0.12, "HCO3": 0.26, "CL": 1.24, "SULFATOS": 3.56}, "frequency": 6152.0}, {"id": "MG2SU1SS07", "metadata": {"ID muestra de suelo": "SU-12993", "ID Biblioteca": "MG2SU1SS07", "Fecha Muestreo": "-", "M\u00e9todo": "-", "Tipo": "Agr\u00edcola", "Estado": "Edo. de M\u00e9xico", "Municipio": "La Concepci\u00f3n", "Localidad": "Aculco", "X": "-", "Y": "-", "Profundidad": "0-30", "R\u00e9gimen": "Temporal", "Cultivo Anterior": "-", "Cultivo a Establecer": "Ma\u00edz/Frijol/Haba/Calabaza", "Arena %": 72.2, "Arcilla %": 13.24, "Limo %": 14.56, "Tipo de Suelo": "Areno Franco", "Textura": "Medio", "pH": 5.89, "CE(1:2) ds/m": 0.15, "Nitr\u00f3geno Total (%)": "124.191.302", "Materia Org\u00e1nica         (%)": "2.084.564.008", "D.A (g/Cm3)": 824.0, "Carbono Total": "1.209.143.856", "Relaci\u00f3n C/N": "9.736.139.583", "K(PPM)": 484.78, "CA(PPM)": 1683.53, "MG(PPM)": 613.19, "NA(PPM)": 84.88, "FE(ppm)": 21.23, "ZN(ppm)": 1.41, "MN(ppm)": 24.96, "CU(ppm)": 0.85, "ARENA(%)": 41.48, "ARCILLA(%)": 27.8, "CE": 0.11, "DA": 0.93, "LIMO(%)": 30.72, "SATURACION": 38.0, "PH": 6.78, "CARBONATOS(%)": 1.04, "MO": 1.12, "N INORGANICO": 25.25, "C.E CAPT": 0.59, "Ca+Mg": 3.15, "CA": 1.76, "MG": 1.39, "NA": 2.16, "K": 0.54, "CO3": 0.12, "HCO3": 0.2, "CL": 1.89, "SULFATOS": 3.65}, "frequency": 3480.0}, {"id": "MG2SU1SS08", "metadata": {"ID muestra de suelo": "SU-13083", "ID Biblioteca": "MG2SU1SS08", "Fecha Muestreo": "-", "M\u00e9todo": "-", "Tipo": "Agr\u00edcola", "Estado": "Edo. de M\u00e9xico", "Municipio": "San Antonio Bonixhi", "Localidad": "Ixtlahuaca", "X": "-", "Y": "-", "Profundidad": "0-25", "R\u00e9gimen": "Temporal", "Cultivo Anterior": "-", "Cultivo a Establecer": "Ma\u00edz", "Arena %": 36.2, "Arcilla %": 40.52, "Limo %": 23.28, "Tipo de Suelo": "Arcilla", "Textura": "Fino", "pH": 4.85, "CE(1:2) ds/m": 1.658, "Nitr\u00f3geno Total (%)": "177.685.323", "Materia Org\u00e1nica         (%)": "2.809.077.108", "D.A (g/Cm3)": 998.0, "Carbono Total": "1.629.395.074", "Relaci\u00f3n C/N": "9.170.116.281", "K(PPM)": 214.27, "CA(PPM)": 4435.91, "MG(PPM)": 908.22, "NA(PPM)": 27.59, "FE(ppm)": 73.84, "ZN(ppm)": 1.72, "MN(ppm)": 156.06, "CU(ppm)": 2.37, "ARENA(%)": 20.04, "ARCILLA(%)": 57.24, "CE": 0.87, "DA": 1.02, "LIMO(%)": 22.72, "SATURACION": 51.0, "PH": 5.34, "CARBONATOS(%)": 1.53, "MO": 2.74, "N INORGANICO": 58.22, "C.E CAPT": 0.65, "Ca+Mg": 5.02, "CA": 2.32, "MG": 2.7, "NA": 1.04, "K": 0.47, "CO3": 0.12, "HCO3": 0.16, "CL": 1.41, "SULFATOS": 4.84}, "frequency": 8564.0}, {"id": "MG2SU1SS09", "metadata": {"ID muestra de suelo": "SU-13417", "ID Biblioteca": "MG2SU1SS09", "Fecha Muestreo": "44264", "M\u00e9todo": "zigzag", "Tipo": "Pecuario", "Estado": "San Luis Potos\u00ed", "Municipio": "-", "Localidad": "Oxtom", "X": "2.159.445", "Y": "-980.084", "Profundidad": "30", "R\u00e9gimen": "-", "Cultivo Anterior": "-", "Cultivo a Establecer": "-", "Arena %": 21.64, "Arcilla %": 58.52, "Limo %": 19.84, "Tipo de Suelo": "Arcilla", "Textura": "Fino", "pH": 7.55, "CE(1:2) ds/m": 0.37, "Nitr\u00f3geno Total (%)": "205.376.971", "Materia Org\u00e1nica         (%)": "3.707.539.412", "D.A (g/Cm3)": 1.061, "Carbono Total": "2.150.544.902", "Relaci\u00f3n C/N": "1.047.120.763", "K(PPM)": 198.84, "CA(PPM)": 9019.54, "MG(PPM)": 239.34, "NA(PPM)": 27.18, "FE(ppm)": 54.24, "ZN(ppm)": 8.76, "MN(ppm)": 49.94, "CU(ppm)": 9.78, "ARENA(%)": 21.64, "ARCILLA(%)": 58.52, "CE": 0.37, "DA": 1.06, "LIMO(%)": 19.84, "SATURACION": 68.0, "PH": 7.55, "CARBONATOS(%)": 3.85, "MO": 3.71, "N INORGANICO": 15.43, "C.E CAPT": 0.48, "Ca+Mg": 3.01, "CA": 1.61, "MG": 1.39, "NA": 1.38, "K": 0.39, "CO3": 0.12, "HCO3": 0.36, "CL": 1.46, "SULFATOS": 2.84}, "frequency": 6476.0}, {"id": "MG2SU1SS10", "metadata": {"ID muestra de suelo": "SU-13464", "ID Biblioteca": "MG2SU1SS10", "Fecha Muestreo": "44264", "M\u00e9todo": "zigzag", "Tipo": "Pecuario", "Estado": "Veracruz", "Municipio": "-", "Localidad": "Coatecomel", "X": "21\u00b40", "Y": "98\u00b46", "Profundidad": "30", "R\u00e9gimen": "-", "Cultivo Anterior": "-", "Cultivo a Establecer": "-", "Arena %": 20.2, "Arcilla %": 34.52, "Limo %": 45.28, "Tipo de Suelo": "Franco Arcilloso", "Textura": "Medio", "pH": 7.28, "CE(1:2) ds/m": 484.0, "Nitr\u00f3geno Total (%)": "286.289.294", "Materia Org\u00e1nica         (%)": "4.768.664.918", "D.A (g/Cm3)": 1.018, "Carbono Total": "2.766.046.936", "Relaci\u00f3n C/N": "9.661.719.786", "K(PPM)": 328.97, "CA(PPM)": 6637.59, "MG(PPM)": 306.94, "NA(PPM)": 173.39, "FE(ppm)": 61.0, "ZN(ppm)": 2.22, "MN(ppm)": 16.84, "CU(ppm)": 1.88, "ARENA(%)": 20.2, "ARCILLA(%)": 34.52, "CE": 0.48, "DA": 1.02, "LIMO(%)": 45.28, "SATURACION": 61.0, "PH": 7.28, "CARBONATOS(%)": 20.53, "MO": 4.77, "N INORGANICO": 77.86, "C.E CAPT": 0.51, "Ca+Mg": 3.08, "CA": 1.7, "MG": 1.38, "NA": 1.34, "K": 0.72, "CO3": 0.12, "HCO3": 0.34, "CL": 2.1, "SULFATOS": 2.58}, "frequency": 6024.0}]}, {"transform": [{"type": "aggregate", "groupby": ["selectedCategory"]}], "name": "groupedBySelectedCategory", "source": "table"}, {"transform": [{"expr": "datum.frequency >= samplingDepth", "type": "filter"}, {"type": "aggregate", "groupby": ["selectedCategory"]}], "name": "groupedBySelectedCategoryAndRetained", "source": "table"}], "signals": [{"name": "width", "value": "", "bind": {"input": "text"}, "on": [{"events": {"source": "window", "type": "resize"}, "update": "containerSize()[0]"}]}, {"name": "chartHeight", "update": "width / 2.5"}, {"name": "chartOffset", "value": 20}, {"name": "height", "update": "chartHeight + chartOffset"}, {"name": "tooltip", "value": {}, "on": [{"events": "rect:mouseover", "update": "datum"}, {"events": "rect:mouseout", "update": "{}"}]}, {"bind": {"input": "select", "options": ["ID muestra de suelo", "ID Biblioteca", "Fecha Muestreo", "M\u00e9todo", "Tipo", "Estado", "Municipio", "Localidad", "X", "Y", "Profundidad", "R\u00e9gimen", "Cultivo Anterior", "Cultivo a Establecer", "Arena %", "Arcilla %", "Limo %", "Tipo de Suelo", "Textura", "pH", "CE(1:2) ds/m", "Nitr\u00f3geno Total (%)", "Materia Org\u00e1nica         (%)", "D.A (g/Cm3)", "Carbono Total", "Relaci\u00f3n C/N", "K(PPM)", "CA(PPM)", "MG(PPM)", "NA(PPM)", "FE(ppm)", "ZN(ppm)", "MN(ppm)", "CU(ppm)", "ARENA(%)", "ARCILLA(%)", "CE", "DA", "LIMO(%)", "SATURACION", "PH", "CARBONATOS(%)", "MO", "N INORGANICO", "C.E CAPT", "Ca+Mg", "CA", "MG", "NA", "K", "CO3", "HCO3", "CL", "SULFATOS"], "element": "#metadata-category"}, "name": "category", "value": "ID muestra de suelo"}, {"bind": {"input": "range", "element": "#sampling-depth-slider", "max": 92011, "min": 0, "step": 1}, "name": "samplingDepth", "value": 0}], "marks": [{"description": "Interactive rarefaction summary plot", "name": "rarefactionplot", "type": "group", "encode": {"enter": {"x": {"value": 0}, "y": {"signal": "chartOffset"}, "width": {"value": 200}, "height": {"signal": "chartHeight"}}}, "marks": [{"type": "rect", "from": {"data": "groupedBySelectedCategory"}, "encode": {"enter": {"x": {"scale": "xscale", "field": "selectedCategory"}, "width": {"scale": "xscale", "band": 1}, "y": {"scale": "yscale", "field": "count"}, "y2": {"scale": "yscale", "value": 0}}, "update": {"tooltip": {"signal": "{'title': datum.selectedCategory, 'Total Samples': datum.count}"}, "fill": {"value": "#D3D3D3"}, "x": {"scale": "xscale", "field": "selectedCategory"}, "width": {"scale": "xscale", "band": 1}, "y": {"scale": "yscale", "field": "count"}, "y2": {"scale": "yscale", "value": 0}}}}, {"type": "rect", "from": {"data": "groupedBySelectedCategoryAndRetained"}, "encode": {"enter": {"x": {"scale": "xscale", "field": "selectedCategory"}, "width": {"scale": "xscale", "band": 1}, "y": {"scale": "yscale", "field": "count"}, "y2": {"scale": "yscale", "value": 0}}, "update": {"tooltip": {"signal": "{'title': datum.selectedCategory, 'Samples Retained': datum.count}"}, "x": {"scale": "xscale", "field": "selectedCategory"}, "width": {"scale": "xscale", "band": 1}, "y": {"scale": "yscale", "field": "count"}, "y2": {"scale": "yscale", "value": 0}, "fill": {"value": "#1F77B4"}}, "hover": {"fill": {"value": "#60B3F7"}}}}, {"type": "text", "encode": {"enter": {"align": {"value": "center"}, "baseline": {"value": "top"}, "fill": {"value": "#000000"}}, "update": {"x": {"scale": "xscale", "signal": "tooltip.selectedCategory", "band": 0.5}, "y": {"scale": "yscale", "signal": "tooltip.count", "offset": -12}, "text": {"signal": "tooltip.count"}, "fillOpacity": [{"test": "datum === tooltip", "value": 0}, {"value": 1}]}}}], "scales": [{"name": "xscale", "type": "band", "domain": {"data": "groupedBySelectedCategory", "field": "selectedCategory", "sort": true}, "range": "width", "padding": 0.1, "round": true}, {"name": "yscale", "domain": {"fields": [{"data": "groupedBySelectedCategory", "field": "count"}]}, "nice": true, "range": [{"signal": "chartHeight"}, 0]}], "axes": [{"orient": "bottom", "scale": "xscale", "title": {"signal": "category"}, "labelAngle": 90, "labelAlign": "left", "labelBaseline": "middle"}, {"orient": "left", "scale": "yscale", "title": "Number of Samples", "tickMinStep": 1}]}]}
+</script>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    var spec = JSON.parse(document.getElementById("spec").innerHTML);
+
+    // Try and come up with a good initial estimate of plot dimensions,
+    // based on the browser dimensions.
+    var opts = {
+      width: $("#plot").width(),
+      height: $("#plot").width() / 2.5
+    };
+
+    vegaEmbed("#plot", spec, opts)
+      .then(function(result) {
+        result.view.logLevel(vega.Warn);
+        // Stash the view object in global namespace for debugging purposes.
+        // Check out https://vega.github.io/vega/docs/api/debugging/
+        // for more details.
+        window.v = result.view;
+      })
+      .catch(function(error) {
+        // From 'js-error-handler.html'
+        handleErrors([error], $("#plot"));
+      });
+
+    // Clean up the vega-embed toolbar
+    var toolbar = $("div .vega-actions").detach();
+    toolbar.addClass("btn-group");
+    toolbar.children("a").each(function() {
+      // NOTE: We're just skipping this bit until we get the plot working with
+      // Vega 5
+      if(this.innerHTML == "Open in Vega Editor"){
+        this.remove()
+        return true
+      }
+      $(this).addClass("btn btn-default");
+    });
+
+    toolbar.appendTo("#toolbar");
+
+    var category = $("#metadata-category .vega-bind");
+    category
+      .children(".vega-bind-name")
+      .replaceWith("<label> Metadata Category &nbsp;</label>");
+    category.children("select").addClass("form-control");
+
+    var samplingDepthSlider = $("#sampling-depth-slider .vega-bind");
+    $(samplingDepthSlider)
+      .find("label")
+      .remove();
+    $(samplingDepthSlider)
+      .find("input")
+      .attr("id", "range-slider");
+    $(samplingDepthSlider)
+      .find("input")
+      .attr("oninput", "sliderHelperFunction(this.value);");
+    $(samplingDepthSlider).prepend(
+      "<label> Sampling Depth &nbsp; </label> <br>"
+    );
+    $(samplingDepthSlider).append(
+      '<br> <input id="text-box" class="form-control" type="number" value="0" min="0" oninput="textBoxHelperFunction(this.value);" />'
+    );
+    $(samplingDepthSlider).append("(zero implies no even sampling)");
+    samplingDepthSlider.children(".vega-bind-name").replaceWith("");
+
+    var rotateLabels = $("#rotate-labels .vega-bind");
+    rotateLabels
+      .children(".vega-bind-name")
+      .replaceWith("<label> Rotate Labels &nbsp;</label>");
+    rotateLabels.children("checkbox").addClass("form-control");
+  });
+</script>
+
+
+<div class="row">
+  <div class="col-lg-8">
+    <table id="feature-table" class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Sample ID</th>
+          <th scope="col">Frequency</th>
+        </tr>
+      </thead>
+      <tbody id="table-body"></tbody>
+    </table>
+  </div>
+</div>
+
+<script id="table-data" type="application/json">
+{"Frequency":{"MG2SU1SS01":6838.0,"MG2SU1SS02":92011.0,"MG2SU1SS03":18741.0,"MG2SU1SS04":1.0,"MG2SU1SS05":7584.0,"MG2SU1SS06":6152.0,"MG2SU1SS07":3480.0,"MG2SU1SS08":8564.0,"MG2SU1SS09":6476.0,"MG2SU1SS10":6024.0}}
+</script>
+
+<script type="text/javascript">
+  var totalFrequencies = 155871;
+  var sampleCount = 10;
+  var defaultDescription = "Retained " + (totalFrequencies.toLocaleString('en'))
+                                       + " (100.00%) features in "
+                                       + sampleCount + " (100.00%) samples at the specifed sampling depth.";
+
+
+  var textField = document.getElementById('text-field');
+  var tableBody = document.getElementById("table-body");
+  var table = document.getElementById("feature-table");
+
+  // when the viz loads the default description is displayed
+  textField.innerHTML = defaultDescription;
+
+  let sampleTable = JSON.parse(document.getElementById("table-data").innerHTML);
+  let sampleFrequencies = sampleTable["Frequency"];
+  // get object keys and store them in an ascending order based on the key value
+  // this order is used to create the table rows
+  sortedSampleIDs = Object.keys(sampleFrequencies).sort(function(a, b) {
+    return sortIDs(a, b, sampleFrequencies)
+  });
+
+  formatTable(tableBody, sampleTable, sortedSampleIDs);
+
+  function updateTableandText(samplingDepth) {
+    let retainedSampleCount = 0;
+
+    // start the counter at 1 to ignore the header row
+    for (var i = 1; row = table.rows[i]; i++) {
+      // The value in table is formatted as a string for display to the user,
+      // but the value in sampleFrequencies is formatted as an int for data
+      // manipulation, so we use the ID we are on in table to get the frequency
+      // from sampleFrequencies.
+      const sampleID = row.cells[0].innerText;
+      const sampleFrequency = sampleFrequencies[sampleID];
+
+      if (sampleFrequency < samplingDepth) {
+        row.className = "danger";
+      } else {
+        row.className = "";
+        retainedSampleCount += 1;
+      }
+    }
+    if (samplingDepth == 0){
+      textField.innerHTML = defaultDescription;
+    }
+    else{
+      var retainedFeatureCount = retainedSampleCount * samplingDepth;
+      textField.innerHTML = "Retained " + formatter.format(retainedFeatureCount)
+                                        + " (" + (retainedFeatureCount/totalFrequencies*100).toFixed(2) + "%) features in "
+                                        + retainedSampleCount + " (" + (retainedSampleCount/sampleCount*100).toFixed(2)
+                                        +  "%) samples at the specifed sampling depth.";
+    }
+  }
+
+
+  function updateSliderVal(val) {
+    var slider = document.getElementById("range-slider");
+    slider.value = val;
+    slider.dispatchEvent(new Event("change"));
+    slider.dispatchEvent(new Event("input"));
+  }
+
+
+  function updateBoxVal(val) {
+    var num = document.getElementById("text-box");
+    num.value = val;
+  }
+
+
+  function sliderHelperFunction(val){
+    updateBoxVal(val);
+    updateTableandText(val);
+  }
+
+
+  function textBoxHelperFunction(val){
+    val = parseInt(val);
+    if (val !== val) {
+      val = 0;
+    }
+
+    // make sure the value in the textbox cannot exceed the max count
+    if (val > 92011.0){
+      var num = document.getElementById("text-box");
+      num.value = 92011.0;
+    }
+    updateSliderVal(val);
+  }
+</script>
+
+
+    </div>
+  </div>
+
+
+    </div>
+    <script type="text/javascript">
+      if (window.frameElement) {
+          document.getElementById('q2templatesheader').remove();
+      }
+    </script>
+    
+
+  </body>
+</html>
